@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.DAO.CategoryDAO">
+	
+	<resultMap type="Category" id="CategoryMap">
+		<id column="zid" property="id"/>
+		<result column="zname" property="name"/>
+		<result column="zparent_id" property="parent_id"/>
+		<result column="zlevels" property="levels"/>
+			<association property="father" javaType="Category">
+				<id column="fid" property="id"/>
+				<result column="fname" property="name"/>
+				<result column="fparent_id" property="parent_id"/>
+				<result column="flevels" property="levels"/>
+			</association>
+	</resultMap>
+	
+	<resultMap type="Category" id="CategoryMap2">
+		<id column="fid" property="id"/>
+		<result column="fname" property="name"/>
+		<result column="fparent_id" property="parent_id"/>
+		<result column="flevels" property="levels"/>
+			<collection property="son" ofType="Category">
+				<id column="zid" property="id"/>
+				<result column="zname" property="name"/>
+				<result column="zparent_id" property="parent_id"/>
+				<result column="zlevels" property="levels"/>
+			</collection>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="CategoryMap">
+		select z.id as zid,
+		z.name as zname,
+		z.parent_id as zparent_id,
+		z.levels as zlevels,
+		f.id as fid,
+		f.name as fname,
+		f.parent_id as fparent_id,
+		f.levels as flevels
+		from dd_category z left join dd_category f 
+		on z.parent_id = f.id	
+	</select>
+	
+	<insert id="addFirst">
+		insert into dd_category (id,name,levels) values (#{id},#{name},#{levels})
+	</insert>
+	
+	<select id="selectFirst" resultType="Category">
+		select id,name,parent_id,levels from dd_category where levels=1
+	</select>
+	
+	<insert id="addSecond">
+		insert into dd_category values(#{id},#{name},#{parent_id},#{levels})
+	</insert>
+	
+	<delete id="delete">
+		delete from dd_category where id=#{id}
+	</delete>
+	
+	<select id="selectSon" resultType="Category">
+		select id,name,parent_id,levels from dd_category where parent_id=#{id}
+	</select>
+	
+	<select id="selectSecond" resultType="Category">
+		select id,name,parent_id,levels from dd_category where levels=2
+	</select>
+	
+	<select id="selectCategory" resultMap="CategoryMap2">
+		select f.id as fid,f.name as fname,f.parent_id as fparent_id,f.levels as flevels,
+			   z.id as zid,z.name as zname,z.parent_id as zparent_id,z.levels as zlevels 
+		from dd_category f left join dd_category z on f.id = z.parent_id 
+		where f.levels = 1
+	</select>
+	
+	<select id="selectById" resultMap="CategoryMap2">
+		select f.id as fid,f.name as fname,f.parent_id as fparent_id,f.levels as flevels, 
+			   z.id as zid,z.name as zname,z.parent_id as zparent_id,z.levels as zlevels 
+		from dd_category f left join dd_category z on f.id = z.parent_id 
+		where f.id = #{fid}
+	</select>
+	
+</mapper>

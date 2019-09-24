@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+<include file="com/baizhi/struts/Inter-struts.xml"></include>
+	<package name="YSZM2" extends="YSZM7" namespace="/category">
+		
+		<action name="*" class="com.baizhi.Action.CategoryAction" method="{1}">
+		<interceptor-ref name="backStack"></interceptor-ref>
+			<result name="success">/back/category/show.jsp</result>
+			<result name="add" type="redirectAction">selectAll</result>
+			<result name="addSecond">/back/category/add-second.jsp</result>
+			<result name="addBook">/back/book/add.jsp</result>
+			<result name="adminLogin">/index.jsp</result>
+		</action>
+		
+	</package>
+</struts>

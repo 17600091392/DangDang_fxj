@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.DAO.OrderDAO">
+	
+	<resultMap type="Order" id="orderMap">
+		<id column="oid" property="id"/>
+		<result column="oorder_no" property="order_no"/>
+		<result column="ototal" property="total"/>
+		<result column="ocreate_date" property="create_date"/>
+		<result column="ostatus" property="status"/>
+		<result column="oaddress_id" property="address_id"/>
+		<result column="ouser_id" property="user_id"/>
+		<association property="address" javaType="Address">
+			<id column="aid" property="id"/>
+			<result column="aname" property="name"/>
+			<result column="alocal" property="local"/>
+			<result column="azip_code" property="zip_code"/>
+			<result column="aphone" property="phone"/>
+			<result column="auser_id" property="user_id"/>
+		</association>
+	</resultMap>
+	
+	<resultMap type="Item" id="itemMap">
+		<id column="iid" property="id"/>
+		<result column="ibook_id" property="book_id"/>
+		<result column="icount" property="count"/>
+		<result column="icreate_date" property="create_date"/>
+		<result column="iorder_id" property="order_id"/>
+		<association property="book" javaType="Book">
+			<id column="bid" property="id"/>
+			<result column="bname" property="name"/>
+			<result column="bcover" property="cover"/>
+			<result column="bprice" property="price"/>
+			<result column="bdprice" property="dprice"/>
+		</association>
+	</resultMap>
+
+	<insert id="addOrder">
+		insert into dd_order values (#{id},#{order_no},#{total},
+		#{create_date},#{status},#{address_id},#{user_id})
+	</insert>
+	
+	<select id="selectAll" resultMap="orderMap">
+		select 
+			o.id as oid,
+			o.order_no as oorder_no,
+			o.total as ototal,
+			o.create_date as ocreate_date,
+			o.status as ostatus,
+			o.address_id as oaddress_id,
+			o.user_id as ouser_id,
+			a.id as aid,
+			a.name as aname,
+			a.local as alocal,
+			a.zip_code as azip_code,
+			a.phone as aphone,
+			a.user_id as auser_id 
+		from dd_order o left join dd_address a 
+		on o.address_id = a.id
+	</select>
+	
+	<select id="selectOne" resultType="Order">
+		select id,order_no,total,create_date,status,address_id,user_id from dd_order where id=#{id}
+	</select>
+	
+	<select id="selectItem" resultMap="itemMap">
+		select 
+			i.id as iid,
+			i.book_id as ibook_id,
+			i.count as icount,
+			i.create_date as icreate_date, 
+			i.order_id as iorder_id,
+			b.id as bid,
+			b.name as bname,
+			b.cover as bcover,
+			b.price as bprice,
+			b.dprice as bdprice 
+		from dd_item i left join dd_book b 
+		on i.book_id = b.id 
+		where i.order_id=#{id}
+	</select>
+
+</mapper>

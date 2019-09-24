@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+<include file="com/baizhi/struts/Inter-struts.xml"></include>
+	<package name="YSZM8" extends="YSZM7" namespace="/order">
+		
+		<action name="*" class="com.baizhi.Action.OrderAction" method="{1}">
+		<interceptor-ref name="backStack"></interceptor-ref>
+			<result name="orderOk">/front/order/order_ok.jsp</result>
+			<result name="showAll">/back/order/show.jsp</result>
+			<result name="showOne">/back/order/detail.jsp</result>
+			<result name="adminLogin">/index.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>

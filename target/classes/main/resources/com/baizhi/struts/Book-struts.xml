@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+<include file="com/baizhi/struts/Inter-struts.xml"></include>
+	<constant name="struts.multipart.maxSize" value="2097152000"></constant>
+	<package name="YSZM3" extends="YSZM7" namespace="/book">
+		<action name="*" class="com.baizhi.Action.BookAction" method="{1}">
+		<interceptor-ref name="backStack"></interceptor-ref>
+			<result name="book">/back/book/show.jsp</result>
+			<result name="show" type="redirectAction">selectAll</result>
+			<result name="update">/back/book/update.jsp</result>
+			<result name="main">/front/main/main.jsp</result>
+			<result name="showBook">/front/main/book_detail.jsp</result>
+			<result name="second">/front/main/book_list.jsp</result>
+			<result name="adminLogin">/index.jsp</result>
+		</action>
+	</package>
+</struts>

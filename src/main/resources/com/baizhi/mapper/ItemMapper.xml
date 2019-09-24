@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.DAO.ItemDAO">
+	
+	<insert id="addItem">
+		insert into dd_item values (#{id},#{book_id},#{count},
+		#{create_date},#{order_id})
+	</insert>
+	
+</mapper>

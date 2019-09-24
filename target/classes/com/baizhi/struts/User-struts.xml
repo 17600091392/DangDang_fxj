@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+<include file="com/baizhi/struts/Inter-struts.xml"></include>
+	<package name="YSZM5" extends="YSZM7" namespace="/user">
+		<action name="*" class="com.baizhi.Action.UserAction" method="{1}">
+		<interceptor-ref name="backStack"></interceptor-ref>
+			<result name="login" type="redirectAction">
+				<param name="namespace">/book</param>
+				<param name="actionName">main</param>
+			</result>
+			<result name="error">/front/user/login_form.jsp</result>
+			<result name="regist">/front/user/register_form.jsp</result>
+			<result name="ok" type="redirectAction">getActiveCode</result>
+			<result name="active">/front/user/verify_form.jsp</result>
+			<result name="registok" type="redirect">/front/user/register_ok.jsp</result>
+			<result name="show">/back/user/show.jsp</result>
+			<result name="selectAll" type="redirectAction">selectAll</result>
+			<result name="adminLogin">/index.jsp</result>
+		</action>
+	</package>
+</struts>

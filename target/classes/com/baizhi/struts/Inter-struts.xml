@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+
+	<package name="YSZM7" extends="struts-default">
+		<interceptors>
+			<!-- 方法拦截器 -->
+			<interceptor name="front" class="com.baizhi.interceptor.frontInter">
+				<param name="includeMethods">selectAddress</param>	
+			</interceptor>
+			<!-- 后台拦截器 -->
+			<interceptor name="back" class="com.baizhi.interceptor.backInter">
+				<param name="includeMethods">selectAll</param>
+			</interceptor>
+			<!-- 前台拦截器栈 -->
+			<interceptor-stack name="frontStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="front"></interceptor-ref>
+			</interceptor-stack>
+			<!-- 后台拦截器栈 -->
+			<interceptor-stack name="backStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="back"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+	</package>
+
+</struts>

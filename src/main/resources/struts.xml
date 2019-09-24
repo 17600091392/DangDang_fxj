@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<include file="com/baizhi/struts/Admin-struts.xml"></include>
+	<include file="com/baizhi/struts/Category-struts.xml"></include>
+	<include file="com/baizhi/struts/Book-struts.xml"></include>
+	<include file="com/baizhi/struts/CartItem-struts.xml"></include>
+	<include file="com/baizhi/struts/User-struts.xml"></include>
+	<include file="com/baizhi/struts/Address-struts.xml"></include>
+	<include file="com/baizhi/struts/Order-struts.xml"></include>
+</struts>

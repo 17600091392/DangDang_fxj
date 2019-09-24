@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+	<package name="YSZM" extends="struts-default" namespace="/admin">
+		
+		<action name="*" class="com.baizhi.Action.AdminAction" method="{1}">
+			<result name="success" type="redirect">/back/main/main.jsp</result>
+			<result name="error">/back/login.jsp</result>
+			<result name="login" type="redirect">/back/login.jsp</result>
+		</action>
+		
+	</package>
+</struts>

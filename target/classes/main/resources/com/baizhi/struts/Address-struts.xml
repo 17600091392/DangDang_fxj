@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN" "struts-2.1.7.dtd" >
+<struts>
+<include file="com/baizhi/struts/Inter-struts.xml"></include>
+<package name="YSZM6" extends="YSZM7" namespace="/address">
+	
+	<action name="*" class="com.baizhi.Action.AddressAction" method="{1}">
+		<interceptor-ref name="frontStack"></interceptor-ref>
+		<result name="address">/front/order/address_form.jsp</result>
+		<result name="login" type="redirect">/front/user/login_form.jsp</result>
+		<result name="active" type="redirectAction">
+			<param name="namespace">/user</param>
+			<param name="actionName">getActiveCode</param>
+		</result>
+	</action>
+	
+</package>	
+</struts>

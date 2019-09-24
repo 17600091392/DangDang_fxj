@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "mybatis-3-config.dtd" >
+<configuration>
+<properties resource="jdbc.properties"></properties>
+
+<typeAliases>
+	<typeAlias type="com.baizhi.entity.Admin" alias="Admin"/>
+	<typeAlias type="com.baizhi.entity.Category" alias="Category"/>
+	<typeAlias type="com.baizhi.entity.Book" alias="Book"/>
+	<typeAlias type="com.baizhi.entity.CartItem" alias="CartItem"/>
+	<typeAlias type="com.baizhi.entity.User" alias="User"/>
+	<typeAlias type="com.baizhi.entity.Address" alias="Address"/>
+	<typeAlias type="com.baizhi.entity.Order" alias="Order"/>
+	<typeAlias type="com.baizhi.entity.Item" alias="Item"/>
+</typeAliases>
+
+	<environments default="oracle">
+		<environment id="oracle">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource="com/baizhi/mapper/AdminMapper.xml"/>
+		<mapper resource="com/baizhi/mapper/CategoryMapper.xml"/>
+		<mapper resource="com/baizhi/mapper/BookMapper.xml"/>
+		<mapper resource="com/baizhi/mapper/UserMapper.xml"/>
+		<mapper resource="com/baizhi/mapper/AddressMapper.xml"/>
+		<mapper resource="com/baizhi/mapper/OrderMapper.xml"/>
+		<mapper resource="com/baizhi/mapper/ItemMapper.xml"/>
+	</mappers>
+	
+</configuration>
