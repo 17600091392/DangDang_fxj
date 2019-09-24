@@ -2,7 +2,7 @@ package com.baizhi.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
+//GitHub上拉下来的，属实给力嗷
 public class Book implements Serializable{
 	private String id;
 	private String name;
